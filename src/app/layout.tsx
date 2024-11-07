@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
+        <h1 className="font-thin text-9xl">Layout</h1>
         { children }
       </body>
     </html>
