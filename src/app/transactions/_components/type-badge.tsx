@@ -6,7 +6,7 @@ interface TransactionTypeBadgeProps {
   transaction: Transaction;
 }
 
-export default function TransactionTypeBadge({
+export function TransactionTypeBadge({
   transaction,
 }: TransactionTypeBadgeProps) {
   if (transaction.type === TransactionType.DEPOSIT) {
