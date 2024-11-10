@@ -1,9 +1,12 @@
 import React, { forwardRef } from "react";
 import { NumericFormat, NumericFormatProps } from "react-number-format";
-import { Input } from "@/components/ui/input";
+import { Input, InputProps } from "@/components/ui/input";
 
 export const MoneyInput = forwardRef(
-  (props: NumericFormatProps, ref: React.ForwardedRef<HTMLInputElement>) => {
+  (
+    props: NumericFormatProps<InputProps>,
+    ref: React.ForwardedRef<HTMLInputElement>,
+  ) => {
     return (
       <NumericFormat
         {...props}
