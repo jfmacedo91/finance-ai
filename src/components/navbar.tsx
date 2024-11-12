@@ -11,7 +11,7 @@ export function NavBar() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex justify-between border-b border-solid px-8 py-4">
+    <nav className="flex justify-between border-b border-solid px-6 py-4">
       <div className="flex items-center gap-10">
         <Image src={logoImage} alt="Finance AI" width={173} height={39} />
         <Link
