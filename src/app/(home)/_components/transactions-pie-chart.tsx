@@ -1,6 +1,6 @@
 "use client";
 
-import { TransactionPercentagePerType } from "@/app/data/get-dashboard/types";
+import { TransactionPercentagePerType } from "@/data/get-dashboard/types";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   ChartConfig,

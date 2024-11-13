@@ -1,4 +1,4 @@
-import { TotalEnpenseCategory } from "@/app/data/get-dashboard/types";
+import { TotalEnpenseCategory } from "@/data/get-dashboard/types";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
