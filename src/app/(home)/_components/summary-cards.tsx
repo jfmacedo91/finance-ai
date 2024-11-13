@@ -1,4 +1,3 @@
-import { db } from "@/lib/prisma";
 import { SummaryCard } from "./summary-card";
 import {
   PiggyBankIcon,
@@ -9,45 +8,18 @@ import {
 
 interface SummaryCards {
   month: string;
+  balance: number;
+  depositsTotal: number;
+  investimentsTotal: number;
+  expensesTotal: number;
 }
 
-export async function SummaryCards({ month }: SummaryCards) {
-  const where = {
-    date: {
-      gte: new Date(`2024-${month}-01`),
-      lt: new Date(`2024-${month}-31`),
-    },
-  };
-
-  const depositsTotal = Number(
-    (
-      await db.transaction.aggregate({
-        where: { ...where, type: "DEPOSIT" },
-        _sum: { amount: true },
-      })
-    )?._sum?.amount,
-  );
-
-  const investimetsTotal = Number(
-    (
-      await db.transaction.aggregate({
-        where: { ...where, type: "INVESTIMENT" },
-        _sum: { amount: true },
-      })
-    )?._sum?.amount,
-  );
-
-  const expensesTotal = Number(
-    (
-      await db.transaction.aggregate({
-        where: { ...where, type: "EXPENSE" },
-        _sum: { amount: true },
-      })
-    )?._sum?.amount,
-  );
-
-  const balance = depositsTotal - investimetsTotal - expensesTotal;
-
+export async function SummaryCards({
+  balance,
+  depositsTotal,
+  expensesTotal,
+  investimentsTotal,
+}: SummaryCards) {
   return (
     <div className="space-y-6">
       <SummaryCard
@@ -61,7 +33,7 @@ export async function SummaryCards({ month }: SummaryCards) {
         <SummaryCard
           icon={<PiggyBankIcon size={16} />}
           title="Investido"
-          amount={investimetsTotal}
+          amount={investimentsTotal}
         />
 
         <SummaryCard
