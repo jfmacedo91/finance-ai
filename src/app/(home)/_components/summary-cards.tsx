@@ -61,7 +61,7 @@ export async function SummaryCards({ month }: SummaryCards) {
         <SummaryCard
           icon={<PiggyBankIcon size={16} />}
           title="Investido"
-          amount={depositsTotal}
+          amount={investimetsTotal}
         />
 
         <SummaryCard
