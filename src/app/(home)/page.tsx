@@ -1,6 +1,6 @@
 import { NavBar } from "@/components/navbar";
 import { auth } from "@clerk/nextjs/server";
-import { getMonth, isMatch } from "date-fns";
+import { isMatch } from "date-fns";
 import { redirect } from "next/navigation";
 import { TimeSelect } from "./_components/time-select";
 import { SummaryCards } from "./_components/summary-cards";
@@ -25,8 +25,7 @@ export default async function Home({ searchParams: { month } }: HomeProps) {
   const monthIsInvalid = !month || !isMatch(month, "MM");
 
   if (monthIsInvalid) {
-    const currentMonth = getMonth(Date());
-    redirect(`?month=${currentMonth + 1}`);
+    redirect(`?month=${new Date().getMonth() + 1}`);
   }
 
   const dashboard = await getDashboard(month);
@@ -42,7 +41,7 @@ export default async function Home({ searchParams: { month } }: HomeProps) {
         <div className="grid h-full grid-cols-[2fr,1fr] gap-6 overflow-hidden">
           <div className="flex flex-col gap-6 overflow-hidden">
             <SummaryCards month={month} {...dashboard} />
-            <div className="grid h-full grid-cols-3 grid-rows-1 gap-6">
+            <div className="grid h-full grid-cols-3 grid-rows-1 gap-6 overflow-hidden">
               <TransactionsPieChart {...dashboard} />
               <ExpensesPerCategory
                 expensesPerCategory={dashboard.totalExpensePerCategory}
