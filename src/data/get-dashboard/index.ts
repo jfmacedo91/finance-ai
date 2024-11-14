@@ -1,9 +1,16 @@
 import { db } from "@/lib/prisma";
 import { TotalEnpenseCategory, TransactionPercentagePerType } from "./types";
 import { TransactionType } from "@prisma/client";
+import { auth } from "@clerk/nextjs/server";
 
 export async function getDashboard(month: string) {
+  const { userId } = await auth();
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
   const where = {
+    userId,
     date: {
       gte: new Date(`${new Date().getFullYear()}-${month}-01`),
       lt: new Date(`${new Date().getFullYear()}-${month}-31`),
